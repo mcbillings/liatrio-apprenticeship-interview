@@ -1,0 +1,5 @@
+#dependancy directory 
+node_modules/
+
+#vscode stuff
+.vscode

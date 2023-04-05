@@ -1,0 +1,22 @@
+{
+  "name": "liatrio-apprenticeship-interview",
+  "version": "1.0.0",
+  "description": "Returns JSON object containing my name and a timestamp in milliseconds",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcbillings/liatrio-apprenticeship-interview.git"
+  },
+  "author": "Mikayla Billings-Alston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcbillings/liatrio-apprenticeship-interview/issues"
+  },
+  "homepage": "https://github.com/mcbillings/liatrio-apprenticeship-interview#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
