@@ -1,6 +1,10 @@
 name: Run Dockerfile and run apprentice-actions
 
-on: workflow_dispatch
+on: 
+  push:
+    branches: [ "main" ]
+  pull-request:
+    branches: [ "main" ]
     
 jobs:
   
