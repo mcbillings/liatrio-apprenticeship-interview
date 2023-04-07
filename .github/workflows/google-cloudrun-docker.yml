@@ -1,12 +1,11 @@
 name: Build and Deploy to Cloud Run
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch
+  
 
 env:
   PROJECT_ID: "liatrio-apprent-interview"
-  GAR_LOCATION: "us"
   SERVICE: "liatrio-apprenticeship-interview"
   REGION: "us-central1"
 
@@ -28,6 +27,19 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' 
           service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' 
+          
+      - name: Docker Auth
+        id: docker-auth
+        uses: 'docker/login-action@v1'
+        with:
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
+          registry: 'gcr.io'
+
+      - name: Build and Push Container
+        run: |-
+          docker build -t "gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}" ./
+          docker push "gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
 
       - name: Deploy to Cloud Run
         id: deploy
@@ -35,8 +47,7 @@ jobs:
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
-          # NOTE: If using a pre-built image, update the image name here
-          image: gcr.io/liatrio-apprent-interview/liatrio-apprenticeship-interview:91674e74b955786040cbd9064aaf3934b4e2bfab
+          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
