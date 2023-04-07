@@ -6,7 +6,8 @@ const port = 80 //port to listen on for connections
 app.get('/', (req, res) => { //handles get requests, returns json object
     res.json({
         "message": "My name is Mikayla Billings-Alston",
-        "test-field": "Does this work?",
+        "question": "Does this work?",
+        "answer": "Looks like it!",
         "timestamp":  Date.now() //timestamp in milliseconds
     })
 })
