@@ -1,0 +1,24 @@
+name: Run Dockerfile and run apprentice-actions
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  
+  run-image:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag app
+        
+      - name: Run Docker image
+        run: docker run -d -p 80:80 app
+        
+      - name: run tests
+        uses: liatrio/github-actions/apprentice-action@master
