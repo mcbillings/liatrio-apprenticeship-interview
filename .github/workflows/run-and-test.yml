@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag IMAGE-TAG
+        run: docker build . --file Dockerfile --tag $IMAGE-TAG
         
       - name: Run Docker image
         run: docker run -p 80:80 IMAGE-TAG
