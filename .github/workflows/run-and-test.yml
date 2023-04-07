@@ -3,7 +3,7 @@ name: Run Dockerfile and run apprentice-actions
 on: 
   push:
     branches: [ "main" ]
-  pull-request:
+  pull_request:
     branches: [ "main" ]
     
 jobs:
