@@ -18,7 +18,7 @@ jobs:
         run: docker build . --file Dockerfile --tag app
         
       - name: Run Docker image
-        run: docker run -p 80:80 app
+        run: docker run -d -p 80:80 app
         
       - name: run tests
         uses: liatrio/github-actions/apprentice-action@master
