@@ -1,0 +1,21 @@
+name: Run Dockerfile and run apprentice-actions
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  
+  run-image:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Docker image
+        run: docker run -p 80:80
+        
+      - name: run tests
+        uses: liatrio/github-actions/apprentice-action@master
