@@ -35,7 +35,7 @@ jobs:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           # NOTE: If using a pre-built image, update the image name here
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
+          image: gcr.io/liatrio-apprent-interview/liatrio-apprenticeship-interview:91674e74b955786040cbd9064aaf3934b4e2bfab
 
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
