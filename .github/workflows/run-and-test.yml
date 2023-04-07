@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
     
-env: 
-  IMAGE-TAG: my-image-name:$(date +%s)
-    
 jobs:
   
   run-image:
@@ -18,10 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag $IMAGE-TAG
-        
-      - name: Run Docker image
-        run: docker run -p 80:80 IMAGE-TAG
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         
       - name: run tests
         uses: liatrio/github-actions/apprentice-action@master
