@@ -7,7 +7,7 @@ app.get('/', (req, res) => { //handles get requests, returns json object
     res.json({
         "message": "My name is Mikayla Billings-Alston",
         "question": "What's your favorite color?",
-        "answer": "Green",
+        "answer": "Blue",
         "timestamp":  Date.now() //timestamp in milliseconds
     })
 })
